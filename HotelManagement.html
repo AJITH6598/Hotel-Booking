@@ -1,0 +1,636 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GrandView Hotel</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+
+/* General Styles */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background: #f8f9fa;
+    color: #333;
+}
+
+/* Navigation Bar */
+nav {
+    background: #222;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 20px;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+nav h1 {
+    color: white;
+    font-size: 24px;
+    font-weight: bold;
+}
+
+nav ul {
+    list-style: none;
+    display: flex;
+    margin: 0;
+    padding: 0;
+}
+
+nav ul li {
+    margin: 0 15px;
+}
+
+nav ul li a {
+    color: white;
+    text-decoration: none;
+    font-size: 16px;
+    padding: 8px 12px;
+    border-radius: 5px;
+    transition: 0.3s ease-in-out;
+}
+
+nav ul li a:hover {
+    background: #ff9800;
+    color: white;
+}
+
+/* Dark Mode Toggle Button */
+#theme-toggle {
+    background: #ff9800;
+    color: white;
+    border: none;
+    padding: 8px 12px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: 0.3s;
+}
+
+#theme-toggle:hover {
+    background: #e68900;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    nav {
+        flex-direction: column;
+        text-align: center;
+    }
+    
+    nav ul {
+        flex-direction: column;
+        width: 100%;
+        padding: 10px 0;
+    }
+    
+    nav ul li {
+        margin: 10px 0;
+    }
+}
+
+
+/* Hero Section */
+.hero {
+    background: url('https://r2imghtlak.mmtcdn.com/r2-mmt-htl-image/flyfish/raw/NH20201280631960/QS1042/QS1042-Q1/1703474988656.jpeg') center/cover;
+    height: 80vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: white;
+    position: relative;
+}
+
+.hero::before {
+    content: "";
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+}
+
+.hero-text {
+    position: relative;
+    z-index: 1;
+}
+
+.cta-buttons button {
+    padding: 10px 20px;
+    margin: 10px;
+    border: none;
+    cursor: pointer;
+    background: #ff9800;
+    color: white;
+    font-size: 16px;
+    transition: 0.3s;
+}
+
+.cta-buttons button:hover {
+    background: #e68900;
+}
+
+/* Features Section */
+.features {
+    display: flex;
+    justify-content: space-around;
+    padding: 40px 10px;
+}
+
+.feature {
+    text-align: center;
+    max-width: 300px;
+}
+
+.feature img {
+    width: 100%;
+    border-radius: 10px;
+    transition: transform 0.3s ease-in-out;
+}
+
+.feature img:hover {
+    transform: scale(1.05);
+}
+
+/* Rooms Section */
+#rooms {
+    text-align: center;
+    padding: 50px 20px;
+    background: #f8f9fa;
+}
+
+h2 {
+    font-size: 32px;
+    color: #333;
+}
+
+.room-list {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+    margin-top: 30px;
+}
+
+.room {
+    background: white;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease-in-out;
+    max-width: 300px;
+}
+
+.room:hover {
+    transform: scale(1.05);
+}
+
+.room img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+}
+
+.room-details {
+    padding: 15px;
+}
+
+h3 {
+    font-size: 20px;
+    margin-bottom: 10px;
+    color: #222;
+}
+
+.price {
+    font-size: 18px;
+    color: #ff9800;
+    font-weight: bold;
+}
+
+.description {
+    font-size: 14px;
+    color: #555;
+    margin: 10px 0;
+}
+
+.room button {
+    width: 100%;
+    padding: 10px;
+    border: none;
+    background: #ff9800;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+    transition: 0.3s;
+    border-radius: 5px;
+}
+
+.room button:hover {
+    background: #e68900;
+}
+
+/* Booking Section */
+#booking {
+    text-align: center;
+    padding: 50px 20px;
+    background: #f4f4f4;
+}
+
+h2 {
+    font-size: 28px;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+.booking-form {
+    max-width: 400px;
+    margin: auto;
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.booking-form label {
+    display: block;
+    font-size: 14px;
+    font-weight: bold;
+    margin: 10px 0 5px;
+    color: #444;
+}
+
+.booking-form input,
+.booking-form select {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 14px;
+}
+
+.booking-form button {
+    width: 100%;
+    padding: 12px;
+    background: #ff9800;
+    border: none;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: 0.3s;
+}
+
+.booking-form button:hover {
+    background: #e68900;
+}
+
+/* Booking Confirmation */
+#billSection {
+    text-align: center;
+    padding: 30px;
+    display: none;
+    background: #fff3cd;
+    border-radius: 10px;
+    max-width: 400px;
+    margin: 20px auto;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+#billDetails {
+    font-size: 16px;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+#billSection button {
+    background: #ff9800;
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+#billSection button:hover {
+    background: #e68900;
+}
+
+/* Spotify Section */
+#spotify {
+    text-align: center;
+    padding: 50px 20px;
+    background: #121212;
+    color: white;
+}
+
+#spotify h2 {
+    font-size: 28px;
+    margin-bottom: 15px;
+    color: #1DB954; /* Spotify Green */
+}
+
+#spotify p {
+    font-size: 16px;
+    margin-bottom: 20px;
+    color: #ccc;
+}
+
+.spotify-player {
+    max-width: 600px;
+    margin: auto;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+}
+
+iframe {
+    width: 100%;
+    border: none;
+    border-radius: 10px;
+}
+/* Contact Section */
+#contact {
+    text-align: center;
+    padding: 50px 20px;
+    background: #f9f9f9;
+    color: #333;
+}
+
+#contact h2 {
+    font-size: 28px;
+    margin-bottom: 20px;
+}
+
+.contact-form {
+    max-width: 500px;
+    margin: auto;
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.input-group {
+    text-align: left;
+    margin-bottom: 15px;
+}
+
+.input-group label {
+    font-size: 14px;
+    font-weight: bold;
+    display: block;
+    margin-bottom: 5px;
+}
+
+.input-group input,
+.input-group textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 14px;
+}
+
+.input-group textarea {
+    resize: none;
+}
+
+.submit-btn {
+    width: 100%;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    background: #007BFF;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.submit-btn:hover {
+    background: #0056b3;
+}
+
+/* Confirmation Message */
+.confirmation {
+    margin-top: 15px;
+    font-size: 16px;
+    color: green;
+    display: none;
+}
+
+.hidden {
+    display: none;
+}
+
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Welcome to Sea View Hotel</h1>
+        <nav>
+            <ul>
+                <li><a href="javascript:void(0)" onclick="showSection('home')">Home</a></li>
+                <li><a href="javascript:void(0)" onclick="showSection('rooms')">Rooms</a></li>
+                <li><a href="javascript:void(0)" onclick="showSection('booking')">Booking</a></li>
+                <li><a href="javascript:void(0)" onclick="showSection('spotify')">Spotify</a></li>
+                <li><a href="javascript:void(0)" onclick="showSection('contact')">Contact</a></li>
+            </ul>
+            <button id="theme-toggle">🌙 Dark Mode</button>
+        </nav>
+    </header>
+
+    <!-- Home Section -->
+    <section id="home" class="section active">
+        <div class="hero">
+            <div class="hero-text">
+                <h1>Welcome to Sea View Hotel</h1>
+                <p>Your comfort and luxury, our priority.</p>
+                <div class="cta-buttons">
+                    <button onclick="showSection('rooms')">View Rooms</button>
+                    <button onclick="showSection('booking')">Book Now</button>
+                </div>
+            </div>
+        </div>
+        <div class="features">
+            <div class="feature">
+                <img src="https://img.freepik.com/premium-photo/luxurious-hotel-room-with-breathtaking-mountain-view-from-private-balcony-concept-luxury-accommodation-mountain-retreat-hotel-stay-balcony-views-relaxing-getaway_864588-118245.jpg" alt="Feature 1">
+                <h3>Exclusive Rooms</h3>
+                <p>Relax in our luxurious rooms with breathtaking views.</p>
+            </div>
+            <div class="feature">
+                <img src="https://cms.exercise.com/wp-content/uploads/2023/02/tmpl-gym-1024x633.webp" alt="Feature 2">
+                <h3>Amazing Amenities</h3>
+                <p>Indulge in world-class facilities like a spa, gym, and more.</p>
+            </div>
+            <div class="feature">
+                <img src="https://img.freepik.com/premium-photo/chefs-hands-seasoning-steak-bbq_198067-1665.jpg" alt="Feature 3">
+                <h3>Premium Dining</h3>
+                <p>Savor gourmet dishes prepared by top chefs.</p>
+            </div>
+        </div>
+    </section>
+    
+
+ <!-- Room Section -->
+
+    <section id="rooms" class="section">
+        <div class="container">
+            <h2>Our Luxurious Rooms</h2>
+            <p>Select a room that suits your style and enjoy a premium stay with us at GrandView Hotel.</p>
+    
+            <div class="room-list">
+                <div class="room">
+                    <img src="https://makkah-madinah.accor.com/wp-content/uploads/2024/08/deluxe-haram-view-9.jpg" alt="Deluxe Room">
+                    <div class="room-details">
+                        <h3>Deluxe Room</h3>
+                        <p class="price">$350/night</p>
+                        <p class="description">Relax in luxury with a king-sized bed, stunning city views, and premium amenities. Perfect for a comfortable stay.</p>
+                        <button onclick="showSection('booking')">Book Now</button>
+                    </div>
+                </div>
+                <div class="room">
+                    <img src="https://thecentrum.in/wp-content/uploads/2024/03/Exe-Suite-img-2-1.webp" alt="Executive Suite">
+                    <div class="room-details">
+                        <h3>Executive Suite</h3>
+                        <p class="price">$500/night</p>
+                        <p class="description">Indulge in our Executive Suite with a spacious living area, private balcony, and superior service for your comfort.</p>
+                        <button onclick="showSection('booking')">Book Now</button>
+                    </div>
+                </div>
+                <div class="room">
+                    <img src="https://img.freepik.com/premium-photo/elegant-jacuzzi-luxurious-penthouse-overlooking-city-skyline-night_938957-40722.jpg" alt="Penthouse">
+                    <div class="room-details">
+                        <h3>Penthouse</h3>
+                        <p class="price">$600/night</p>
+                        <p class="description">For those who want the ultimate luxury experience. Our penthouse offers a private terrace, jacuzzi, and panoramic city views.</p>
+                        <button onclick="showSection('booking')">Book Now</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+<!-- Booking Section -->
+<section id="booking" class="section">
+    <h2>Booking Form</h2>
+    <form id="bookingForm" class="booking-form">
+        <label for="name">Full Name:</label>
+        <input type="text" id="name" required>
+
+        <label for="email">Email:</label>
+        <input type="email" id="email" required>
+
+        <label for="room">Room Type:</label>
+        <select id="room" required>
+            <option value="Deluxe Room">Deluxe Room</option>
+            <option value="Executive Suite">Executive Suite</option>
+            <option value="Penthouse Suite">Penthouse Suite</option>
+        </select>
+
+        <label for="checkin">Check-in Date:</label>
+        <input type="date" id="checkin" required>
+
+        <label for="checkout">Check-out Date:</label>
+        <input type="date" id="checkout" required>
+
+        <button type="submit">Book Now</button>
+    </form>
+</section>
+
+<!-- Bill Section -->
+<section id="billSection" class="section" style="display: none;">
+    <h3>Booking Confirmation</h3>
+    <div id="billDetails">
+        <!-- Bill content will be injected here -->
+    </div>
+    <button onclick="showSection('home')">Go Back to Home</button>
+</section>
+
+     <!-- Spotify Section -->
+
+     <section id="spotify" class="section">
+        <div class="container">
+            <h2>Listen to Vijay Melody Album</h2>
+            <p>Enjoy the best of Vijay's melodies from this incredible album while planning your stay at GrandView Hotel!</p>
+            
+            <!-- Embed Spotify Player for Vijay Melody Album -->
+            <div class="spotify-player">
+                <iframe src="https://open.spotify.com/embed/album/4X15U4EfPcKW5irfDVCg4F?si=Qu3SkUNbQ-m9HUVlarKvLw" width="100%" height="380" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>
+            </div>
+        </div>
+    </section>
+    
+   <!-- Contact Section -->
+<section id="contact" class="section">
+    <h2>Contact Us</h2>
+    <form class="contact-form" id="contactForm" action="your_submission_endpoint" method="POST">
+        <div class="input-group">
+            <label for="contact-name">Full Name:</label>
+            <input type="text" id="contact-name" required placeholder="Enter your full name">
+            <small class="error hidden">Please enter your name.</small>
+        </div>
+
+        <div class="input-group">
+            <label for="contact-email">Email:</label>
+            <input type="email" id="contact-email" required placeholder="Enter your email address">
+            <small class="error hidden">Please enter a valid email address.</small>
+        </div>
+
+        <div class="input-group">
+            <label for="subject">Subject:</label>
+            <input type="text" id="subject" required placeholder="Subject of your message">
+            <small class="error hidden">Please enter a subject.</small>
+        </div>
+
+        <div class="input-group">
+            <label for="message">Message:</label>
+            <textarea id="message" rows="6" required placeholder="Write your message here"></textarea>
+            <small class="error hidden">Please write your message.</small>
+        </div>
+
+        <div class="input-group">
+            <label for="contact-phone">Phone Number:</label>
+            <input type="tel" id="contact-phone" placeholder="Enter your phone number (Optional)">
+        </div>
+
+        <!-- CAPTCHA or Anti-Spam could go here -->
+
+        <div id="loading" class="hidden">
+            <p>Submitting your message...</p>
+        </div>
+
+        <button type="submit" class="submit-btn">Send Message</button>
+        <button type="reset" class="reset-btn">Reset</button>
+    </form>
+
+    <div id="contactConfirmation" class="confirmation hidden">
+        ✅ Thank you for contacting us! We’ll get back to you shortly.
+    </div>
+
+    <div class="social-links">
+        <p>Follow us on:</p>
+        <a href="https://www.facebook.com" target="_blank">Facebook</a> | 
+        <a href="https://www.twitter.com" target="_blank">Twitter</a> | 
+        <a href="https://www.instagram.com" target="_blank">Instagram</a>
+    </div>
+
+    <div id="map-container">
+        <h3>Our Location</h3>
+        <iframe src="https://www.google.com/maps/embed/v1/place?q=GrandView+Hotel+Location&key=YOUR_GOOGLE_MAP_API_KEY" width="100%" height="350" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+    </div>
+</section>
+
+
+    <script src="Hotel.js"></script> <!-- Link to the external JavaScript file -->
+</body>
+</html>
+
